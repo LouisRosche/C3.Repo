@@ -1,7 +1,7 @@
 # KAMS Science Curriculum Repository Manifest
 ## Complete Content Inventory
 
-**Last Updated:** 2025-12-05
+**Last Updated:** 2025-12-06
 **Repository:** C3.Repo
 **Maintainer:** Louis Rosche
 
@@ -27,6 +27,9 @@ C3.Repo/
 │   │   ├── cycle09.json         # 📋 Planned
 │   │   └── cycle10.json         # 📋 Planned
 │   └── schema/                  # Validation schemas
+│       ├── cycle-schema.json    # ✅ Cycle config validation
+│       ├── form-schema.json     # Form validation
+│       └── mtss-schema.json     # MTSS validation
 │
 ├── content/                     # All instructional content
 │   ├── grade7/                  # Grade 7: Life & Earth Science
@@ -41,13 +44,39 @@ C3.Repo/
 │
 ├── data/                        # Data aggregation & analysis
 │   ├── FormRegistry.gs
+│   ├── hub/                     # Central data hub
+│   │   ├── KAMS-Science-Hub.xlsx
+│   │   └── hub-setup-guide.md
 │   ├── aggregation/
+│   │   ├── ResponseCollector.gs
+│   │   ├── DataAggregator.gs
+│   │   └── output/
+│   │       ├── responses/
+│   │       ├── analysis/
+│   │       └── mtss/
 │   ├── analysis/
+│   │   ├── ThreeDimensionalAnalyzer.gs
+│   │   ├── MisconceptionTracker.gs
+│   │   ├── SpiralEffectiveness.gs
+│   │   └── templates/
+│   │       └── analysis-dashboard.json
 │   └── mtss/
+│       ├── InterventionGenerator.gs
+│       ├── tier-definitions.json
+│       └── output/
+│           ├── tier2-students.json
+│           └── tier3-students.json
 │
 ├── framework/                   # Pedagogical documentation
+│   ├── mtss-framework.md
+│   ├── pedagogical-approach.md
+│   ├── standards-alignment.md   # ✅ NGSS mapping
+│   └── technical-reference.md
 ├── scripts/                     # Automation scripts
+│   ├── generate-cycle.js        # Config generation
+│   └── validate-config.js       # Cycle validation
 ├── shared/                      # Cross-grade utilities
+│   └── FormUtils.gs
 ├── templates/                   # Content generation templates
 └── archive/                     # Legacy/backup files
 ```
@@ -149,6 +178,7 @@ Each placeholder cycle includes:
 | `cycles/cycle08.json` | C8 specs placeholder | 📋 Placeholder |
 | `cycles/cycle09.json` | C9 specs placeholder | 📋 Placeholder |
 | `cycles/cycle10.json` | C10 specs placeholder | 📋 Placeholder |
+| `schema/cycle-schema.json` | Cycle config validation | ✅ Complete |
 | `schema/form-schema.json` | Form validation | ✅ Complete |
 | `schema/mtss-schema.json` | MTSS validation | ✅ Complete |
 
@@ -164,12 +194,21 @@ Each placeholder cycle includes:
 | File | Purpose | Status |
 |------|---------|--------|
 | `FormRegistry.gs` | Form ID management | ✅ Complete |
+| `hub/KAMS-Science-Hub.xlsx` | Central data hub | ✅ Complete |
+| `hub/hub-setup-guide.md` | Hub configuration guide | ✅ Complete |
 | `aggregation/ResponseCollector.gs` | Response collection | ✅ Complete |
 | `aggregation/DataAggregator.gs` | Data aggregation | ✅ Complete |
-| `aggregation/output/.gitkeep` | Output directory | ✅ Ready |
+| `aggregation/output/responses/` | Raw response JSON | ✅ Ready |
+| `aggregation/output/analysis/` | Aggregated analysis | ✅ Ready |
+| `aggregation/output/mtss/` | Intervention data | ✅ Ready |
 | `analysis/ThreeDimensionalAnalyzer.gs` | 3D assessment analysis | ✅ Complete |
-| `analysis/templates/.gitkeep` | Analysis templates | ✅ Ready |
-| `mtss/.gitkeep` | MTSS intervention data | ✅ Ready |
+| `analysis/MisconceptionTracker.gs` | Misconception pattern analysis | ✅ Complete |
+| `analysis/SpiralEffectiveness.gs` | Spiral question tracking | ✅ Complete |
+| `analysis/templates/analysis-dashboard.json` | Dashboard template | ✅ Complete |
+| `mtss/InterventionGenerator.gs` | Intervention list generation | ✅ Complete |
+| `mtss/tier-definitions.json` | MTSS tier thresholds | ✅ Complete |
+| `mtss/output/tier2-students.json` | Tier 2 student list | ✅ Ready |
+| `mtss/output/tier3-students.json` | Tier 3 student list | ✅ Ready |
 
 ### `/framework/` - Pedagogical Documentation
 
@@ -177,27 +216,27 @@ Each placeholder cycle includes:
 |------|---------|--------|
 | `mtss-framework.md` | MTSS intervention system | ✅ Complete |
 | `pedagogical-approach.md` | Teaching philosophy | ✅ Complete |
+| `standards-alignment.md` | NGSS mapping across cycles | ✅ Complete |
 | `technical-reference.md` | Technical specifications | ✅ Complete |
 
 ### `/scripts/` - Automation
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `generate-cycle-config.js` | Config generation | ✅ Complete |
-| `validate-cycle.js` | Cycle validation | ✅ Complete |
+| `generate-cycle.js` | Cycle config generation | ✅ Complete |
+| `validate-config.js` | Config validation | ✅ Complete |
 
 ### `/shared/` - Utilities
 
 | File | Purpose | Status |
 |------|---------|--------|
 | `FormUtils.gs` | Form helper functions | ✅ Complete |
-| `KAMS-Science-Hub.xlsx` | Data hub template (6 MB) | ✅ Complete |
 
 ### `/templates/` - Content Generation
 
 | File | Purpose | Status |
 |------|---------|--------|
-| `forms/FormGenerator.gs` | Master form generation | ✅ Complete |
+| `forms/FormTemplate.gs` | Master form generation | ✅ Complete |
 | `forms/HookTemplate.gs` | Hook form pattern | ✅ Complete |
 | `forms/StationTemplate.gs` | Station form pattern | ✅ Complete |
 | `forms/ExitTicketTemplate.gs` | Exit ticket pattern | ✅ Complete |
@@ -212,6 +251,7 @@ Each placeholder cycle includes:
 | File | Purpose | Status |
 |------|---------|--------|
 | `KAMS_Cycle3_Hub_Additions.xlsx` | Hub additions backup | ✅ Archived |
+| `htmls-scripts-contents-holder.docx` | Legacy HTML/Scripts reference | ✅ Archived |
 
 ---
 
@@ -245,12 +285,12 @@ Each placeholder cycle includes:
 
 | Metric | Count |
 |--------|-------|
-| Total files | 130+ |
+| Total files | 145+ |
 | Complete content files | 32 |
 | Placeholder files | 90+ |
 | Template files | 9 |
-| Configuration files | 10 |
-| Infrastructure files | 12 |
+| Configuration files | 11 |
+| Infrastructure files | 18 |
 | Active cycles | 1 (C3) |
 | In-progress cycles | 1 (C4) |
 | Placeholder cycles | 6 (C5-C10) |
@@ -267,7 +307,7 @@ cat content/grade{7,8}/cycle{03-10}/cycle-status.json
 ### To add content to a placeholder week:
 1. Edit files in `content/grade{X}/cycle{X}/week{X}/`
 2. Update `cycle-status.json` with new completion percentages
-3. Run validation: `node scripts/validate-cycle.js`
+3. Run validation: `node scripts/validate-config.js`
 
 ### To add a new cycle:
 1. Create `config/cycles/cycle{X}.json` (or update existing placeholder)
@@ -285,4 +325,20 @@ cat content/grade{7,8}/cycle{03-10}/cycle-status.json
 
 ---
 
-*This manifest is maintained manually. Last update: 2025-12-05*
+*This manifest is maintained manually. Last update: 2025-12-06*
+
+---
+
+## Audit Log
+
+### 2025-12-06: Architectural Compliance Audit
+- Created `config/schema/cycle-schema.json` (was missing)
+- Created `framework/standards-alignment.md` (was missing)
+- Created `data/hub/` directory with hub-setup-guide.md
+- Moved `KAMS-Science-Hub.xlsx` from `/shared/` to `/data/hub/`
+- Created MTSS infrastructure: `InterventionGenerator.gs`, `tier-definitions.json`, output files
+- Created Analysis tools: `MisconceptionTracker.gs`, `SpiralEffectiveness.gs`, `analysis-dashboard.json`
+- Renamed scripts: `generate-cycle-config.js` → `generate-cycle.js`, `validate-cycle.js` → `validate-config.js`
+- Renamed template: `FormGenerator.gs` → `FormTemplate.gs`
+- Moved legacy docx to `/archive/`
+- Deleted orphaned `content/grade7/cycle02` file
